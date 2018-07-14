@@ -7,14 +7,16 @@ public class Bar {
     private float close;
     private float high;
     private float low;
-    private Date timeStamp;
+    private long volume;
+    private Date date;
 
-    public Bar(float open, float close, float high, float low, Date timeStamp) {
+    public Bar(Date date, float open, float high, float low, float close, long volume) {
+        this.date = date;
         this.open = open;
-        this.close = close;
         this.high = high;
         this.low = low;
-        this.timeStamp = timeStamp;
+        this.close = close;
+        this.volume = volume;
     }
 
     public float getOpen() {
@@ -33,7 +35,11 @@ public class Bar {
         return low;
     }
 
+    public long getVolume() {
+        return volume;
+    }
+
     public Date getTimeStamp() {
-        return timeStamp;
+        return date;
     }
 }

@@ -1,5 +1,5 @@
 package event;
 
 public enum EventTypes {
-    MARKET, SIGNAL, ORDER, FILL
+    MARKET, SIGNAL, ORDER, FILL, BAR, TICK
 }

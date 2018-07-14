@@ -1,6 +1,6 @@
 package event;
 
-abstract public class Event {
+public abstract class Event {
     private EventTypes type;
 
     public Event(EventTypes type) {

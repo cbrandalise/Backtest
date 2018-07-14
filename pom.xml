@@ -3,10 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>groupId</groupId>
     <artifactId>Backtester</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <artifactId>junit-platform-console</artifactId>
+            <artifactId>junit-platform-console-standalone</artifactId>
+            <artifactId>junit-platform-engine</artifactId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <artifactId>junit-platform-runner</artifactId>
+            <artifactId>junit-platform-suite-api</artifactId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+    </dependencies>
 </project>
