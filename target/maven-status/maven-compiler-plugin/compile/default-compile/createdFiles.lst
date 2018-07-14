@@ -1,0 +1,14 @@
+Backtest.class
+algorithm/Algorithm.class
+data/Sides.class
+event/EventTypes.class
+data/CSVDataHandler.class
+Backtest$1.class
+data/DataHandler.class
+data/Bar.class
+event/OrderTypes.class
+util/CSVReader.class
+event/EventQueue.class
+event/SignalEvent.class
+Constants/Constants.class
+event/Event.class

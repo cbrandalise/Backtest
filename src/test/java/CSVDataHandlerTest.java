@@ -5,6 +5,7 @@ import event.Event;
 import event.EventQueue;
 import event.SignalEvent;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -25,19 +26,22 @@ public class CSVDataHandlerTest {
     }
 
     @Test
-    void shouldReturnTheLatestBar() {
+    @DisplayName("Should return the latest bar")
+    void latestBar() {
         Bar bar = csvDataHandler.getLatestBar();
         assertTrue(bar instanceof Bar);
     }
 
     @Test
-    void shouldReturnASetNumberOfBars() {
+    @DisplayName("Should return the latest n bars")
+    void latestBars() {
         List<Bar> bars = csvDataHandler.getLatestBars(5);
         assertEquals(bars.size(), 5);
     }
 
     @Test
-    void shouldUpdateABar() {
+    @DisplayName("Should update by inserting a bar at the end of the list")
+    void updateBar() {
         Bar bar = new Bar(
                 new Date(),
                 123.45f,
