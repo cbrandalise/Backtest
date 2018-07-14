@@ -18,6 +18,6 @@ public class Backtester {
 //        backtest.initialize();
 //
 //        backtest.stopTest();
-        assertEquals(1+1, 2);
+//        assertEquals(1+1, 2);
     }
 }

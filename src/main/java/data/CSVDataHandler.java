@@ -9,13 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import static Constants.Constants.DATE_FORMAT;
 
 public class CSVDataHandler implements DataHandler {
     private String path;
-    ArrayList<Bar> bars;
-    EventQueue<Event> eventQueue;
+    private ArrayList<Bar> bars;
+    private EventQueue<Event> eventQueue;
 
     public CSVDataHandler(String path, EventQueue eventQueue) {
         this.path = path;
@@ -33,8 +34,10 @@ public class CSVDataHandler implements DataHandler {
         return bars.get(bars.size() -1);
     }
 
-    public Bar getLatestBars() {
-        return null;
+    public List<Bar> getLatestBars(int n) {
+        int end = bars.size() - 1;
+        int from = end - n;
+        return bars.subList(from, end);
     }
 
     public Float getLatestBarValueOfType() {
