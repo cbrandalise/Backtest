@@ -1,3 +1,5 @@
+import Constants.Constants;
+import algorithm.SMAAlgo;
 import data.CSVDataHandler;
 import data.Sides;
 import event.Event;
@@ -12,10 +14,11 @@ public class Backtester {
     @Test
     @DisplayName("should create an backtester instance")
     void testInstantiateBacktest() {
-//        CSVDataHandler dataHandler = new CSVDataHandler("");
-//        EventQueue<Event> eventQueue = new EventQueue<>(new SignalEvent("aapl", Sides.LONG));
-//        Backtest backtest = new Backtest(eventQueue, dataHandler);
-//        backtest.initialize();
+        EventQueue<Event> eventQueue = new EventQueue<>(new SignalEvent("aapl", Sides.LONG));
+        CSVDataHandler dataHandler = new CSVDataHandler(Constants.RESOURCE_PATH+"SP500_historical.csv", eventQueue);
+        SMAAlgo smaAlgo = new SMAAlgo();
+        Backtest backtest = new Backtest(eventQueue, dataHandler, smaAlgo);
+        backtest.initialize();
 //
 //        backtest.stopTest();
 //        assertEquals(1+1, 2);

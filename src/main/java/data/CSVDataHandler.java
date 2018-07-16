@@ -1,5 +1,6 @@
 package data;
 
+import event.BarEvent;
 import event.Event;
 import event.EventQueue;
 import util.CSVReader;
@@ -22,6 +23,7 @@ public class CSVDataHandler implements DataHandler {
         this.path = path;
         bars = new ArrayList<>();
         this.eventQueue = eventQueue;
+        this.loadCSVFile();
     }
 
     public void loadCSVFile() {
@@ -31,13 +33,21 @@ public class CSVDataHandler implements DataHandler {
 
     public Bar getLatestBar() {
         if(bars.size() == 0) return null;
-        return bars.get(bars.size() -1);
+        return bars.remove(0);
     }
 
     public List<Bar> getLatestBars(int n) {
         int end = bars.size() - 1;
         int from = end - n;
         return bars.subList(from, end);
+    }
+
+    public void latestEvent() {
+        Bar bar = this.getLatestBar();
+        if(bar != null) {
+            System.out.println("Pushing a bar event");
+            this.eventQueue.pushEvent(new BarEvent("SPY", bar));
+        }
     }
 
     public Float getLatestBarValueOfType() {
@@ -55,13 +65,13 @@ public class CSVDataHandler implements DataHandler {
                Date date = formatter.parse(barData[0]);
 
                 Bar b = new Bar(
-                            date,
-                            Float.valueOf(barData[1]),
-                            Float.valueOf(barData[2]),
-                            Float.valueOf(barData[3]),
-                            Float.valueOf(barData[4]),
-                            Long.valueOf(barData[6])
-                        );
+                    date,
+                    Float.valueOf(barData[1]),
+                    Float.valueOf(barData[2]),
+                    Float.valueOf(barData[3]),
+                    Float.valueOf(barData[4]),
+                    Long.valueOf(barData[6])
+                );
                 bars.add(b);
             } catch (ParseException e) {
                 e.printStackTrace();

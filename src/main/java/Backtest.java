@@ -1,4 +1,6 @@
+import algorithm.Algorithm;
 import data.DataHandler;
+import event.BarEvent;
 import event.Event;
 import event.EventQueue;
 import event.EventTypes;
@@ -7,10 +9,12 @@ public class Backtest {
     private boolean runTest;
     private EventQueue eventQueue;
     private DataHandler dataHandler;
+    private Algorithm algorithm;
 
-    public Backtest(EventQueue eventQueue, DataHandler dataHandler) {
+    public Backtest(EventQueue eventQueue, DataHandler dataHandler, Algorithm algorithm) {
         this.eventQueue = eventQueue;
         this.dataHandler = dataHandler;
+        this.algorithm = algorithm;
     }
 
     public void initialize() {
@@ -20,15 +24,19 @@ public class Backtest {
     public void run() {
         runTest = true;
         System.out.println("Event Loop initiated");
+        algorithm.initialize();
         while(runTest) {
-            Event event = this.eventQueue.popEvent();
             if(!this.eventQueue.hasEvent()) {
-                dataHandler.getLatestBar();
+                dataHandler.latestEvent();
             }
-            EventTypes type = event.getType();
 
+            Event event = this.eventQueue.popEvent();
+            EventTypes type = event.getType();
             switch (type) {
                 case BAR:
+                    System.out.println("Bar event");
+                    BarEvent barEvent = (BarEvent) event;
+                    algorithm.handleBarEvent(barEvent.getBar());
                     break;
                 case FILL:
                     break;
