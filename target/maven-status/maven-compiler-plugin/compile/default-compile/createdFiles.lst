@@ -5,7 +5,9 @@ event/EventTypes.class
 data/CSVDataHandler.class
 Backtest$1.class
 data/DataHandler.class
+event/BarEvent.class
 data/Bar.class
+algorithm/SMAAlgo.class
 event/OrderTypes.class
 util/CSVReader.class
 event/EventQueue.class

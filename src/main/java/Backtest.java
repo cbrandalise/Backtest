@@ -4,17 +4,21 @@ import event.BarEvent;
 import event.Event;
 import event.EventQueue;
 import event.EventTypes;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Backtest {
     private boolean runTest;
     private EventQueue eventQueue;
     private DataHandler dataHandler;
     private Algorithm algorithm;
+    private final Logger logger;
 
     public Backtest(EventQueue eventQueue, DataHandler dataHandler, Algorithm algorithm) {
         this.eventQueue = eventQueue;
         this.dataHandler = dataHandler;
         this.algorithm = algorithm;
+        this.logger = LogManager.getLogger(Backtest.class);
     }
 
     public void initialize() {
@@ -23,18 +27,23 @@ public class Backtest {
 
     public void run() {
         runTest = true;
-        System.out.println("Event Loop initiated");
+        logger.debug("Backtest started.");
         algorithm.initialize();
         while(runTest) {
             if(!this.eventQueue.hasEvent()) {
                 dataHandler.latestEvent();
             }
 
+            if(!dataHandler.hasBars()) {
+                this.stopTest();
+                this.testCompleted();
+            }
+
             Event event = this.eventQueue.popEvent();
             EventTypes type = event.getType();
             switch (type) {
                 case BAR:
-                    System.out.println("Bar event");
+                    logger.debug("Bar event");
                     BarEvent barEvent = (BarEvent) event;
                     algorithm.handleBarEvent(barEvent.getBar());
                     break;
@@ -48,7 +57,10 @@ public class Backtest {
                     break;
             }
         }
+    }
 
+    private void testCompleted() {
+        System.out.println("Test Completed");
     }
 
     public boolean stopTest() {

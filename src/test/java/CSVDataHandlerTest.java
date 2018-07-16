@@ -27,21 +27,21 @@ public class CSVDataHandlerTest {
 
     @Test
     @DisplayName("Should return the latest bar")
-    void latestBar() {
+    public void testLatestBar() {
         Bar bar = csvDataHandler.getLatestBar();
         assertTrue(bar instanceof Bar);
     }
 
     @Test
     @DisplayName("Should return the latest n bars")
-    void latestBars() {
+    public void testLatestBars() {
         List<Bar> bars = csvDataHandler.getLatestBars(5);
         assertEquals(bars.size(), 5);
     }
 
     @Test
     @DisplayName("Should update by inserting a bar at the end of the list")
-    void updateBar() {
+    public void testUpdateBar() {
         Bar bar = new Bar(
                 new Date(),
                 123.45f,

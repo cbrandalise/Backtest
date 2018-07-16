@@ -10,4 +10,5 @@ public interface DataHandler {
     Float getLatestBarValueOfType();
     void updateBar(Bar bar);
     void latestEvent();
+    boolean hasBars();
 }

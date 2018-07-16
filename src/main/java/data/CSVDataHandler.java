@@ -58,6 +58,10 @@ public class CSVDataHandler implements DataHandler {
         bars.add(bar);
     }
 
+    public boolean hasBars() {
+        return bars.size() > 0;
+    }
+
     private void loadBars(String[][] rawData) {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         for (String[] barData : rawData) {

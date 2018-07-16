@@ -7,6 +7,7 @@
 /Users/Christian/Desktop/Backtester/src/main/java/event/Event.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/EventQueue.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/OrderTypes.java
+/Users/Christian/Desktop/Backtester/src/main/java/algorithm/SMAAlgo.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/EventTypes.java
 /Users/Christian/Desktop/Backtester/src/main/java/data/CSVDataHandler.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/BarEvent.java

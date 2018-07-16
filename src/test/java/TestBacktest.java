@@ -7,13 +7,12 @@ import event.EventQueue;
 import event.SignalEvent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class Backtester {
+public class TestBacktest {
     @Test
     @DisplayName("should create an backtester instance")
-    void testInstantiateBacktest() {
+    public void testInstantiateBacktest() {
         EventQueue<Event> eventQueue = new EventQueue<>(new SignalEvent("aapl", Sides.LONG));
         CSVDataHandler dataHandler = new CSVDataHandler(Constants.RESOURCE_PATH+"SP500_historical.csv", eventQueue);
         SMAAlgo smaAlgo = new SMAAlgo();
