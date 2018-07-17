@@ -31,9 +31,17 @@ public class CSVDataHandler implements DataHandler {
         loadBars(data);
     }
 
-    public Bar getLatestBar() {
+    public Bar popNextBar() {
         if(bars.size() == 0) return null;
         return bars.remove(0);
+    }
+
+    public Bar getLatestBar() {
+        if(bars.size() > 0) {
+            return bars.get(bars.size() - 1);
+        }
+
+        return null;
     }
 
     public List<Bar> getLatestBars(int n) {
@@ -43,9 +51,8 @@ public class CSVDataHandler implements DataHandler {
     }
 
     public void latestEvent() {
-        Bar bar = this.getLatestBar();
+        Bar bar = this.popNextBar();
         if(bar != null) {
-            System.out.println("Pushing a bar event");
             this.eventQueue.pushEvent(new BarEvent("SPY", bar));
         }
     }

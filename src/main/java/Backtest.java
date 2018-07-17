@@ -1,9 +1,6 @@
 import algorithm.Algorithm;
 import data.DataHandler;
-import event.BarEvent;
-import event.Event;
-import event.EventQueue;
-import event.EventTypes;
+import event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,7 +40,6 @@ public class Backtest {
             EventTypes type = event.getType();
             switch (type) {
                 case BAR:
-                    logger.debug("Bar event");
                     BarEvent barEvent = (BarEvent) event;
                     algorithm.handleBarEvent(barEvent.getBar());
                     break;
@@ -54,6 +50,7 @@ public class Backtest {
                 case MARKET:
                     break;
                 case SIGNAL:
+                    System.out.println("SIGNAL EVENT FIRED ->" + ((SignalEvent) event).getSide());
                     break;
             }
         }

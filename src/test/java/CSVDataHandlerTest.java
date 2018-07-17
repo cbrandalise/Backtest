@@ -21,14 +21,14 @@ public class CSVDataHandlerTest {
     @BeforeAll
     public static void initialize() {
         EventQueue<Event> eventQueue = new EventQueue<Event>(new SignalEvent("aapl", Sides.LONG));
-        csvDataHandler = new CSVDataHandler(RESOURCE_PATH+"SP500_historical.csv", eventQueue);
+        csvDataHandler = new CSVDataHandler(RESOURCE_PATH+"test.csv", eventQueue);
         csvDataHandler.loadCSVFile();
     }
 
     @Test
     @DisplayName("Should return the latest bar")
     public void testLatestBar() {
-        Bar bar = csvDataHandler.getLatestBar();
+        Bar bar = csvDataHandler.popNextBar();
         assertTrue(bar instanceof Bar);
     }
 
@@ -53,6 +53,8 @@ public class CSVDataHandlerTest {
 
         csvDataHandler.updateBar(bar);
         Bar latestBar = csvDataHandler.getLatestBar();
+        System.out.println(bar.toString());
+        System.out.println(latestBar.toString());
         assertTrue(latestBar.equals(bar));
     }
 }

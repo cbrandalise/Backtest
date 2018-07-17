@@ -46,10 +46,10 @@ public class Bar {
     @Override
     public String toString() {
         return "Date: " + date +
-               "Open: " + open +
-               "High: " + high +
-               "Low: " + low +
-               "Close: " + close +
-               "Volume: " + volume;
+               " Open: " + open +
+               " High: " + high +
+               " Low: " + low +
+               " Close: " + close +
+               " Volume: " + volume;
     }
 }
