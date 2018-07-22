@@ -1,20 +1,24 @@
 import algorithm.Algorithm;
 import data.DataHandler;
 import event.*;
+import execution.Execution;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Order;
 
 public class Backtest {
     private boolean runTest;
     private EventQueue eventQueue;
     private DataHandler dataHandler;
     private Algorithm algorithm;
+    private Execution execution;
     private final Logger logger;
 
-    public Backtest(EventQueue eventQueue, DataHandler dataHandler, Algorithm algorithm) {
+    public Backtest(EventQueue eventQueue, DataHandler dataHandler, Algorithm algorithm, Execution execution) {
         this.eventQueue = eventQueue;
         this.dataHandler = dataHandler;
         this.algorithm = algorithm;
+        this.execution = execution;
         this.logger = LogManager.getLogger(Backtest.class);
     }
 
@@ -44,13 +48,16 @@ public class Backtest {
                     algorithm.handleBarEvent(barEvent.getBar());
                     break;
                 case FILL:
+                    FillEvent fillEvent = (FillEvent) event;
                     break;
                 case ORDER:
-                    break;
-                case MARKET:
+                    OrderEvent orderEvent = (OrderEvent) event;
+                    execution.execute(orderEvent);
                     break;
                 case SIGNAL:
-                    System.out.println("SIGNAL EVENT FIRED ->" + ((SignalEvent) event).getSide());
+                    SignalEvent signalEvent = (SignalEvent) event;
+                    System.out.println("SIGNAL EVENT FIRED ->" + signalEvent.getSide());
+                    this.eventQueue.pushEvent(new OrderEvent(signalEvent.getSymbol(), ));
                     break;
             }
         }

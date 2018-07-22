@@ -17,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class CSVDataHandlerTest {
-    public static CSVDataHandler csvDataHandler;
-    @BeforeAll
-    public static void initialize() {
-        EventQueue<Event> eventQueue = new EventQueue<Event>(new SignalEvent("aapl", Sides.LONG));
-        csvDataHandler = new CSVDataHandler(RESOURCE_PATH+"test.csv", eventQueue);
+    private CSVDataHandler csvDataHandler;
+    public void initialize() {
+        EventQueue<Event> eventQueue = new EventQueue<>(new SignalEvent("aapl", Sides.LONG));
+        csvDataHandler = new CSVDataHandler(RESOURCE_PATH+"SP500_historical.csv", eventQueue);
         csvDataHandler.loadCSVFile();
     }
 
     @Test
     @DisplayName("Should return the latest bar")
     public void testLatestBar() {
+        initialize();
         Bar bar = csvDataHandler.popNextBar();
         assertTrue(bar instanceof Bar);
     }
@@ -35,6 +35,7 @@ public class CSVDataHandlerTest {
     @Test
     @DisplayName("Should return the latest n bars")
     public void testLatestBars() {
+        initialize();
         List<Bar> bars = csvDataHandler.getLatestBars(5);
         assertEquals(bars.size(), 5);
     }
@@ -42,6 +43,7 @@ public class CSVDataHandlerTest {
     @Test
     @DisplayName("Should update by inserting a bar at the end of the list")
     public void testUpdateBar() {
+        initialize();
         Bar bar = new Bar(
                 new Date(),
                 123.45f,
@@ -53,8 +55,6 @@ public class CSVDataHandlerTest {
 
         csvDataHandler.updateBar(bar);
         Bar latestBar = csvDataHandler.getLatestBar();
-        System.out.println(bar.toString());
-        System.out.println(latestBar.toString());
         assertTrue(latestBar.equals(bar));
     }
 }

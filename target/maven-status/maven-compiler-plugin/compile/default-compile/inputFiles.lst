@@ -1,6 +1,9 @@
+/Users/Christian/Desktop/Backtester/src/main/java/execution/SampleExecution.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/SignalEvent.java
 /Users/Christian/Desktop/Backtester/src/main/java/data/Bar.java
 /Users/Christian/Desktop/Backtester/src/main/java/Backtest.java
+/Users/Christian/Desktop/Backtester/src/main/java/event/FillEvent.java
+/Users/Christian/Desktop/Backtester/src/main/java/execution/Execution.java
 /Users/Christian/Desktop/Backtester/src/main/java/algorithm/Algorithm.java
 /Users/Christian/Desktop/Backtester/src/main/java/data/DataHandler.java
 /Users/Christian/Desktop/Backtester/src/main/java/Constants/Constants.java
@@ -10,6 +13,7 @@
 /Users/Christian/Desktop/Backtester/src/main/java/algorithm/SMAAlgo.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/EventTypes.java
 /Users/Christian/Desktop/Backtester/src/main/java/data/CSVDataHandler.java
+/Users/Christian/Desktop/Backtester/src/main/java/event/OrderEvent.java
 /Users/Christian/Desktop/Backtester/src/main/java/event/BarEvent.java
 /Users/Christian/Desktop/Backtester/src/main/java/util/CSVReader.java
 /Users/Christian/Desktop/Backtester/src/main/java/data/Sides.java
