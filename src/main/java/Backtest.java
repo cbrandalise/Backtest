@@ -57,7 +57,14 @@ public class Backtest {
                 case SIGNAL:
                     SignalEvent signalEvent = (SignalEvent) event;
                     System.out.println("SIGNAL EVENT FIRED ->" + signalEvent.getSide());
-                    this.eventQueue.pushEvent(new OrderEvent(signalEvent.getSymbol(), ));
+                    this.eventQueue.pushEvent(new OrderEvent(
+                            signalEvent.getSymbol(),
+                            100,
+                            OrderTypes.MARKET,
+                            signalEvent.getSide())
+                    );
+                    break;
+                case TICK:
                     break;
             }
         }
