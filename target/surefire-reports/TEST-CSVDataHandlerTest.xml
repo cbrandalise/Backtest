@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="CSVDataHandlerTest" time="0.668" errors="0" skipped="0">
+<testsuite tests="2" failures="1" name="CSVDataHandlerTest" time="0.423" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
@@ -64,7 +64,16 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="CSVDataHandlerTest" name="CSVDataHandlerTest.testLatestBar" time="0.357"/>
-  <testcase classname="CSVDataHandlerTest" name="CSVDataHandlerTest.testLatestBars" time="0.123"/>
-  <testcase classname="CSVDataHandlerTest" name="CSVDataHandlerTest.testUpdateBar" time="0.188"/>
+  <testcase classname="CSVDataHandlerTest" name="CSVDataHandlerTest.testLatestBars" time="0.303"/>
+  <testcase classname="CSVDataHandlerTest" name="CSVDataHandlerTest.testUpdateBar" time="0.12">
+    <failure message="expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;true&gt; but was: &lt;false&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:40)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:42)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:37)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:129)
+	at CSVDataHandlerTest.testUpdateBar(CSVDataHandlerTest.java:57)
+</failure>
+    <system-out>--&gt; The current bar: Date: Tue Jan 03 00:00:00 CST 1950 Open: 16.66 High: 16.66 Low: 16.66 Close: 16.66 Volume: 1260000
+</system-out>
+  </testcase>
 </testsuite>

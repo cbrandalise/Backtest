@@ -15,12 +15,16 @@ public class CSVDataHandler implements DataHandler {
     private String path;
     private LinkedList<Bar> bars;
     private EventQueue<Event> eventQueue;
+    private Iterator<Bar> barIterator;
+    private Bar currentBar;
 
     public CSVDataHandler(String path, EventQueue eventQueue) {
         this.path = path;
         bars = new LinkedList<>();
         this.eventQueue = eventQueue;
         this.loadCSVFile();
+        barIterator = bars.listIterator();
+        currentBar = bars.get(0);
     }
 
     public void loadCSVFile() {
@@ -28,14 +32,10 @@ public class CSVDataHandler implements DataHandler {
         loadBars(data);
     }
 
-    public Bar popNextBar() {
-        if(bars.size() == 0) return null;
-        return bars.remove(0);
-    }
-
     public Bar getLatestBar() {
-        if(bars.size() > 0) {
-            return bars.get(bars.size() - 1);
+        if(currentBar != null) {
+            System.out.println(String.format("--> The current bar: %s", currentBar.toString()));
+            return currentBar;
         }
 
         return null;
@@ -48,8 +48,9 @@ public class CSVDataHandler implements DataHandler {
     }
 
     public void latestEvent() {
-        Bar bar = this.popNextBar();
-        if(bar != null) {
+        if(barIterator.hasNext()) {
+            Bar bar = barIterator.next();
+            currentBar = bar;
             this.eventQueue.pushEvent(new BarEvent("SPY", bar));
         }
     }
@@ -63,7 +64,7 @@ public class CSVDataHandler implements DataHandler {
     }
 
     public boolean hasBars() {
-        return bars.size() > 0;
+        return barIterator.hasNext();
     }
 
     private void loadBars(String[][] rawData) {

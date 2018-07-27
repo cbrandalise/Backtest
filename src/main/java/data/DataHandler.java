@@ -5,7 +5,6 @@ import data.Bar;
 import java.util.List;
 
 public interface DataHandler {
-    Bar popNextBar();
     Bar getLatestBar();
     List<Bar> getLatestBars(int n);
     Float getLatestBarValueOfType();
